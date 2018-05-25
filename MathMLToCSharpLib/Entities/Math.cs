@@ -46,12 +46,8 @@ namespace MathMLToCSharpLib.Entities
 
         public void WriteXml(XmlWriter writer)
         {
-            writer.WriteStartDocument();
-            writer.WriteStartElement(this.GetType().Name);
             foreach (IBuildable item in contents)
                 item.WriteXml(writer);
-            writer.WriteEndElement();
-            writer.WriteEndDocument();
         }
         #endregion
 

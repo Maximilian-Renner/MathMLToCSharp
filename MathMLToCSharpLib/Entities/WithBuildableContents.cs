@@ -163,7 +163,11 @@ namespace MathMLToCSharpLib.Entities
             writer.WriteStartElement(this.GetType().Name);
 
             foreach (IBuildable item in contents)
+            {
+                writer.WriteElementString(this.GetType().Name, "");
                 item.WriteXml(writer);
+            }
+                
 
             writer.WriteEndElement();
         }
