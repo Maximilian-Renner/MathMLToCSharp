@@ -8,6 +8,7 @@ namespace MathMLToCSharpLib.Entities
     /// <summary>
     /// Subscript and superscript one one variable.
     /// </summary>
+    [Serializable]
     public class Msubsup : WithBuildableContents
     {
         public Msubsup() { }
@@ -22,7 +23,7 @@ namespace MathMLToCSharpLib.Entities
                     Mi subscript = localCopy[1] as Mi;
                     if (subscript != null)
                     {
-                        subscript.Content += Semantics.starPrefix;
+                        subscript.content += Semantics.starPrefix;
                         localCopy.RemoveAt(2);
                     }
                     else
@@ -32,7 +33,7 @@ namespace MathMLToCSharpLib.Entities
                         if (row != null && row.LastElement != null && row.LastElement is WithTextContent)
                         {
                             WithTextContent lastElem = (WithTextContent)row.LastElement;
-                            lastElem.Content += Semantics.starPrefix;
+                            lastElem.content += Semantics.starPrefix;
                             localCopy.RemoveAt(2);
                         }
                     }

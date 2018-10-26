@@ -8,7 +8,8 @@ namespace MathMLToCSharpLib.Entities
     /// This interface must be implemented by all types of expression
     /// objects in the tree.
     /// </summary>
-    public interface IBuildable : IXmlSerializable
+    
+public interface IBuildable : IXmlSerializable
     {
         /// <summary>
         /// Builds a textual (C#) representation of the model existing at the root of this node.

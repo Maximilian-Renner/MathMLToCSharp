@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using Wintellect.PowerCollections;
 
 namespace MathMLToCSharpLib.Entities
 {
-  /// <summary>
-  /// Completely spurious element that MathType 6 insists on generating.
-  /// </summary>
-  public class Semantics : WithBuildableContents
+    /// <summary>
+    /// Completely spurious element that MathType 6 insists on generating.
+    /// </summary>
+    [Serializable]
+    public class Semantics : WithBuildableContents
   {
     internal const string starPrefix = "_star";
 

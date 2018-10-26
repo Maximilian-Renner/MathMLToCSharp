@@ -2,10 +2,12 @@ using System;
 using System.Text;
 using System.Xml;
 using System.Xml.Schema;
+using System.Xml.Serialization;
 using Wintellect.PowerCollections;
 
 namespace MathMLToCSharpLib.Entities
 {
+    [Serializable]
     public abstract class WithBinaryContent : IBuildable
     {
         public IBuildable first, second;
@@ -16,7 +18,7 @@ namespace MathMLToCSharpLib.Entities
             this.first = first;
             this.second = second;
         }
-
+        [XmlIgnore]
         public Pair<IBuildable, IBuildable> Contents
         {
             get
@@ -24,6 +26,18 @@ namespace MathMLToCSharpLib.Entities
                 return new Pair<IBuildable, IBuildable>(first, second);
             }
         }
+        //[XmlIgnore]
+        //public IBuildable First
+        //{
+        //    get { return first; }
+        //    set { first = value; }
+        //}
+        //[XmlIgnore]
+        //public IBuildable Second
+        //{
+        //    get { return second; }
+        //    set { second = value; }
+        //}
 
         #region IBuildable Members
 

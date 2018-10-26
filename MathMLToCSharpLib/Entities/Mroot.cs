@@ -1,10 +1,12 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace MathMLToCSharpLib.Entities
 {
     /// <summary>
     /// Radical. These do not exist in C#, so cubic root of N is encoded as <c>Math.Pow(N, 1/3)</c>.
     /// </summary>
+    [Serializable]
     public class Mroot : WithBinaryContent
     {
         public Mroot() { }

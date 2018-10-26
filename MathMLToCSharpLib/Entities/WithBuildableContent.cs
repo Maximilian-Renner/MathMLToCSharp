@@ -3,18 +3,26 @@ using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
+using System.Xml.Serialization;
 
 namespace MathMLToCSharpLib.Entities
 {
+    [Serializable]
     public abstract class WithBuildableContent : IBuildable
     {
-        protected IBuildable content;
+        public IBuildable content;
 
         public WithBuildableContent() { }
         protected WithBuildableContent(IBuildable content)
         {
             this.content = content;
         }
+        //[XmlIgnore]
+        //public IBuildable Content
+        //{
+        //    get { return content; }
+        //    set { content = value; }
+        //}
 
         #region IBuildable Members
 

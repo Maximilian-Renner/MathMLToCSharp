@@ -1,4 +1,5 @@
-﻿using System.Collections.Specialized;
+﻿using System;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Text;
 
@@ -7,6 +8,7 @@ namespace MathMLToCSharpLib.Entities
     /// <summary>
     /// Operator.
     /// </summary>
+    [Serializable]
     public class Mo : WithTextContent
     {
         private static readonly StringDictionary rep;

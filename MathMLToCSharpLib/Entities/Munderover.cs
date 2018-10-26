@@ -1,7 +1,9 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace MathMLToCSharpLib.Entities
 {
+    [Serializable]
     class Munderover : WithBuildableContents
     {
         public Munderover() { }

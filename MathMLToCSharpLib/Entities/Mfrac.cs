@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 
 namespace MathMLToCSharpLib.Entities
@@ -7,6 +8,7 @@ namespace MathMLToCSharpLib.Entities
     /// </summary>
     // note: it might be worthwhile somehow differentiating between fraction and
     // ordinary division, e.g., having fraction parts evaluate as temporary variables.
+    [Serializable]
     public class Mfrac : WithBinaryContent
     {
         public Mfrac() { }
@@ -32,8 +34,8 @@ namespace MathMLToCSharpLib.Entities
                         try
                         {
                             double _1, _2;
-                            if (double.TryParse(mn1.Content, out _1) &&
-                                double.TryParse(mn2.Content, out _2) &&
+                            if (double.TryParse(mn1.content, out _1) &&
+                                double.TryParse(mn2.content, out _2) &&
                                 _2 != 0.0)
                             {
                                 result = _1 / _2;

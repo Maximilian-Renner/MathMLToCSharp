@@ -1,8 +1,10 @@
+using System;
 using System.Text;
 
 namespace MathMLToCSharpLib.Entities
 {
-  public class Annotation : WithTextContent
+    [Serializable]
+    public class Annotation : WithTextContent
   {
     public Annotation(string content):base(content) {}
     public override void Visit(StringBuilder sb, BuildContext bc)

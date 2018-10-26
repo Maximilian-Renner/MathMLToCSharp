@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using Wintellect.PowerCollections;
 
@@ -6,6 +7,7 @@ namespace MathMLToCSharpLib.Entities
     /// <summary>
     /// Superscript. Taken to mean 'power of' unless the superscript parses into a *.
     /// </summary>
+    [Serializable]
     public class Msup : WithBinaryContent
     {
         public Msup() { }
@@ -32,14 +34,14 @@ namespace MathMLToCSharpLib.Entities
             {
                 // this isn't really a superscript - it's part of the variable
                 Mi mi = (Mi)first;
-                Mi newMi = new Mi(mi.Content + Semantics.starPrefix);
+                Mi newMi = new Mi(mi.content + Semantics.starPrefix);
                 newMi.Visit(sb, bc);
             }
             else
             {
                 if ((first is Mrow) && ((first as Mrow).ContainsSingleMtable))
                 {
-                    if ((second is Mrow) && ((second as Mrow).ContainsSingleMi) && ((second as Mrow).LastElement as Mi).Content == "T")
+                    if ((second is Mrow) && ((second as Mrow).ContainsSingleMi) && ((second as Mrow).LastElement as Mi).content == "T")
                     {
                         first.Visit(sb, bc);
                         sb.Append(".Transpose()");
@@ -51,7 +53,7 @@ namespace MathMLToCSharpLib.Entities
                         second.Visit(sb, bc);
                         sb.Append(")");
                     }
-                    else if ((second is Mrow) && ((second as Mrow).ContainsSingleMn) && ((second as Mrow).LastElement as Mn).Content == "-1")
+                    else if ((second is Mrow) && ((second as Mrow).ContainsSingleMn) && ((second as Mrow).LastElement as Mn).content == "-1")
                     {
                         first.Visit(sb, bc);
                         sb.Append(".Inverse()");

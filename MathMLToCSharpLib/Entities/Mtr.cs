@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 
 namespace MathMLToCSharpLib.Entities
@@ -5,6 +6,7 @@ namespace MathMLToCSharpLib.Entities
     /// <summary>
     /// Table row.
     /// </summary>
+    [Serializable]
     public class Mtr : WithBuildableContents
     {
         public Mtr() { }

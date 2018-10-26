@@ -10,6 +10,7 @@ namespace MathMLToCSharpLib.Entities
     /// <summary>
     /// Identifier (a.k.a. variable).
     /// </summary>
+    [Serializable]
     public class Mi : WithTextContent
     {
         public Mi() { }
@@ -87,8 +88,8 @@ namespace MathMLToCSharpLib.Entities
                     bc.Vars.Add(varName);
 
                 // use implicit multiplication if necessary
-                if (bc.LastTokenRequiresTimes && !bc.Options.SubscriptMode)
-                    sb.Append("*");
+                //if (bc.LastTokenRequiresTimes && !bc.Options.SubscriptMode)
+                //    sb.Append("*");
                 // add type to context
                 if (needReplace)
                 {
@@ -99,8 +100,8 @@ namespace MathMLToCSharpLib.Entities
                     sb.Append(varName);
                 }
                 // unless this is the last variable, add multiplication sign after it
-                if (i + 1 != vars.Count)
-                    sb.Append("*");
+                //if (i + 1 != vars.Count)
+                //    sb.Append("*");
             }
 
             bc.Tokens.Add(this);

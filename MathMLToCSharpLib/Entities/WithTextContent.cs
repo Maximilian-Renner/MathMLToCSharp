@@ -3,9 +3,11 @@ using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
+using System.Xml.Serialization;
 
 namespace MathMLToCSharpLib.Entities
 {
+    [Serializable]
     public abstract class WithTextContent : IBuildable
     {
         public string content;
@@ -14,12 +16,12 @@ namespace MathMLToCSharpLib.Entities
         {
             this.content = content;
         }
-
-        public string Content
-        {
-            get { return content; }
-            set { content = value; }
-        }
+        //[XmlIgnore]
+        //public string Content
+        //{
+        //    get { return content; }
+        //    set { content = value; }
+        //}
 
 
         #region IBuildable Members

@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 
 namespace MathMLToCSharpLib.Entities
@@ -5,6 +6,7 @@ namespace MathMLToCSharpLib.Entities
     /// <summary>
     /// A fairly generic element that does not mean anything.
     /// </summary>
+    [Serializable]
     public class Mrow : WithBuildableContents
     {
         public Mrow() { }

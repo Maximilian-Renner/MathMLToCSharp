@@ -18,6 +18,8 @@ namespace MathMLToCSharpLib
         private readonly IList tokens = new ArrayList();
         private readonly ICollection<String> vars = new OrderedSet<String>();
         private readonly IList<IBuildable> possibleDivisionsByZero = new List<IBuildable>();
+
+        private BuildContextOptions options;
         internal IList<IBuildable> PossibleDivisionsByZero
         {
             get
@@ -36,15 +38,24 @@ namespace MathMLToCSharpLib
         /// Initializes a new instance of the <see cref="BuildContext"/> class.
         /// </summary>
         /// <param name="options">Build options.</param>
-        internal BuildContext(BuildContextOptions options)
+        public BuildContext(BuildContextOptions options)
         {
-            Options = options;
+            this.options = options;
         }
 
         /// <summary>
         /// Options used for building the code.
         /// </summary>
-        internal BuildContextOptions Options { get; private set; }
+        internal BuildContextOptions Options {
+            get
+            {
+                if (options == null)
+                    options = new BuildContextOptions();
+                return options;
+            }
+
+            private set { options = value; }
+            }
 
         /// <summary>
         /// Errors encountered during build.
@@ -101,7 +112,8 @@ namespace MathMLToCSharpLib
                 if (isClosing)
                 {
                     Trace.WriteLine("No * due to closing brace.");
-                    return true;
+                    //return true;
+                    return false;
                 }
                 if (isMo)
                 {
@@ -109,7 +121,7 @@ namespace MathMLToCSharpLib
                     return false;
                 }
 
-                if (t is Msup | t is Mrow) return false;
+                if (t is Msup | t is Mrow | t is WithBinaryContent | t is WithBuildableContents) return false;
 
                 Trace.WriteLine("Need *. Last token is " + t.GetType().Name);
                 return true;

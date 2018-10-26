@@ -5,10 +5,12 @@ using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
+using System.Xml.Serialization;
 using Wintellect.PowerCollections;
 
 namespace MathMLToCSharpLib.Entities
 {
+    [Serializable]
     public abstract class WithBuildableContents : IBuildable
     {
         public IBuildable[] contents;
@@ -22,6 +24,12 @@ namespace MathMLToCSharpLib.Entities
 
             ReplaceInverseTrigFunctions(contents);
         }
+        //[XmlIgnore]
+        //public IBuildable[] Contents
+        //{
+        //    get { return contents; }
+        //    set { contents = value; }
+        //}
 
         public IBuildable LastElement
         {
@@ -79,11 +87,11 @@ namespace MathMLToCSharpLib.Entities
                         if (mi != null)
                         {
                             // change Mi's content to incorporate the delta
-                            Mi newMi = new Mi("∆" + mi.Content);
+                            Mi newMi = new Mi("∆" + mi.content);
                             ctxCopy[index + 1] = newMi;
                             // remove the delta
                             ctxCopy.RemoveAt(index);
-                            Trace.WriteLine(newMi.Content);
+                            Trace.WriteLine(newMi.content);
                         }
                     }
                 }
@@ -105,7 +113,7 @@ namespace MathMLToCSharpLib.Entities
             // this allows us to determine how many close parens we need.
             foreach (IBuildable v in ctxCopy)
             {
-                if (v is Mi && Semantics.knownFuncts.Contains((v as Mi).Content))
+                if (v is Mi && Semantics.knownFuncts.Contains((v as Mi).content))
                 {
                     containsFunct = true;
                     numFuncts++;
@@ -115,7 +123,7 @@ namespace MathMLToCSharpLib.Entities
             if (containsFunct)
             {
                 // Only process if this is not the spurious function.
-                if (ctxCopy.Count != 1 || (!Semantics.knownFuncts.Contains((ctxCopy[0] as Mi).Content)))
+                if (ctxCopy.Count != 1 || (!Semantics.knownFuncts.Contains((ctxCopy[0] as Mi).content)))
                 {
                     foreach (IBuildable v in ctxCopy)
                         v.Visit(sb, context);
@@ -164,7 +172,7 @@ namespace MathMLToCSharpLib.Entities
 
             foreach (IBuildable item in contents)
             {
-                writer.WriteElementString(this.GetType().Name, "");
+                //writer.WriteElementString(this.GetType().Name, "");
                 item.WriteXml(writer);
             }
                 
@@ -194,9 +202,9 @@ namespace MathMLToCSharpLib.Entities
                         Mrow row1 = terms.First as Mrow;
                         if (row1.Contents.Length > 0 && row1.Contents[0] is Mi)
                         {
-                            if (Semantics.inverseTrigs.ContainsKey((row1.Contents[0] as Mi).Content))
+                            if (Semantics.inverseTrigs.ContainsKey((row1.Contents[0] as Mi).content))
                             {
-                                trigFunction = (row1.Contents[0] as Mi).Content;
+                                trigFunction = (row1.Contents[0] as Mi).content;
                                 funcIsTrig = true;
                             }
                         }

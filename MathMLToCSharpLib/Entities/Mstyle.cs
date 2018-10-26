@@ -1,5 +1,8 @@
-﻿namespace MathMLToCSharpLib.Entities
+﻿using System;
+
+namespace MathMLToCSharpLib.Entities
 {
+    [Serializable]
     class Mstyle : WithBuildableContents
     {
         public Mstyle() { }
