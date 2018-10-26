@@ -1,3 +1,18 @@
+Fork notes
+----------
+
+This fork has some major changes and has changed use cases. This fork shall be used to calculate formulas with.
+First off, the entities are serializable. This allows you to write back your MathML-Code and reuse it for other applications.
+Also there is a parsing functionallity that allows to read simple formula strings like "5+3^2" and convert them to MathML. (only works for +,-,*,/,^,sqrt operators)
+Those are some core features that I've really missed
+
+Also I've removed the functionality that a * will be added after each letter of a variable.
+In my eyes this is complete nonsense and is against the MathML specification.
+The original project would convert <Math><Mi>test</Mi></Math> to: "t*e*s*t".
+It makes more sense to read "t*e*s*t" as four different Mi-objects.
+At the other side, allowing multiple characters for variable names is more useable if you want to use the C# output to calculate with, as you can just get any names of your objects/properties in there.
+
+
 Introduction
 ------------
 
